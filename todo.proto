@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package todo;
+
+option go_package = "github.com/kingztech2019/go-grpc";
+
+service ToDoService {
+  rpc CreateTask(Task) returns (TaskResponse);
+  rpc GetTasks(Empty) returns (TaskList);
+  rpc UpdateTask(Task) returns (TaskResponse);
+  rpc DeleteTask(TaskID) returns (TaskResponse);
+}
+
+message Task {
+  string id = 1;
+  string description = 2;
+  bool completed = 3;
+}
+
+message TaskID {
+  string id = 1;
+}
+
+message TaskResponse {
+  string message = 1;
+}
+
+message TaskList {
+  repeated Task tasks = 1;
+}
+
+message Empty {}
